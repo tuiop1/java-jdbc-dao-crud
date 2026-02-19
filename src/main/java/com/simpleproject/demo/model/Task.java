@@ -1,0 +1,38 @@
+package com.simpleproject.demo.model;
+
+//model of task
+public class Task {
+    private final Long id;
+    private final String name;
+    private final boolean isCompleted;
+    private final String description;
+
+
+    public Task(Long id, String name, boolean isCompleted, String description) throws IllegalArgumentException {
+        this.id = id;
+        this.name = name;
+        this.isCompleted = isCompleted;
+        this.description = description;
+
+
+    }
+
+
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String toString(){
+       return String.format("%d | %s%s\n(description.): %s",id,name,isCompleted ? " (completed) " :" (not completed) ",description);
+    }
+}
