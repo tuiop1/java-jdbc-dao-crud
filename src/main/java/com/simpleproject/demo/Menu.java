@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static final TaskService ts = new TaskService();
+    private static final TaskService ts = new TaskService(DataSourceFactory.getDataSource());
 
     public static void printStartMenu() {
         System.out.print("""
@@ -115,7 +115,7 @@ public class Menu {
         Task oldTask;
 
         try {
-            oldTask = ts.findTaskById(id);
+            oldTask = ts.findTaskByID(id);
             if(oldTask == null) throw new RuntimeException("No task with this id was found!");
         } catch (Exception e) {
             System.out.println("No task with this id was found!");
@@ -192,7 +192,7 @@ public class Menu {
         }
         Task task;
         try {
-            task = ts.findTaskById(id);
+            task = ts.findTaskByID(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to find task!");

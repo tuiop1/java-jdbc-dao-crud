@@ -22,6 +22,7 @@ public class DataSourceFactory {
             InputStream input = DataSourceFactory.class.getClassLoader().getResourceAsStream("application.properties");
             try {
 
+                if (input == null) throw new RuntimeException("application.properties not found!");
                 props.load(input);
             } catch (IOException e) {
                 throw new RuntimeException("Props were not loaded!", e);
@@ -50,7 +51,7 @@ public class DataSourceFactory {
     }
 
 
-    public static HikariDataSource getDataSource(){
+    public static HikariDataSource getDataSource() {
         return dataSource;
     }
 }

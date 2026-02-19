@@ -2,6 +2,7 @@ package com.simpleproject.demo.dao;
 
 
 import java.util.List;
+import java.util.Optional;
 
 //general dao
 public interface DAO<T, ID> {
@@ -11,7 +12,7 @@ public interface DAO<T, ID> {
 
     void delete(ID id);
 
-    T findByID(ID id);
+    Optional<T> findByID(ID id);
 
     void update(ID id, T entity);
 }

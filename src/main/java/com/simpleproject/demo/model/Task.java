@@ -14,7 +14,6 @@ public class Task {
         this.isCompleted = isCompleted;
         this.description = description;
 
-        if(name == null || name.length() < 3 ) throw new IllegalArgumentException("Failed to create Task(name is not correct)");
 
     }
 
