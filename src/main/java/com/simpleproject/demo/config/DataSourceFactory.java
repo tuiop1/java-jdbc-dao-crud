@@ -23,6 +23,7 @@ public class DataSourceFactory {
             try {
 
                 props.load(input);
+                if(input == null) throw new RuntimeException("application.properties not found!");
             } catch (IOException e) {
                 throw new RuntimeException("Props were not loaded!", e);
             }
