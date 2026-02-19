@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//dao for task using jdbc
 public class JdbcTaskDAO implements DAO<Task, Long> {
     @Override
     public void save(Task task) {
@@ -33,6 +34,7 @@ public class JdbcTaskDAO implements DAO<Task, Long> {
         String sql = """
                 SELECT id,name, status, description
                 FROM tasks
+                ORDER BY id
                 """;
 
         List<Task> tasks = new ArrayList<>();
@@ -42,12 +44,12 @@ public class JdbcTaskDAO implements DAO<Task, Long> {
 
             while (rs.next()) {
 
-                tasks.add(new Task(rs.getInt("id"), rs.getString("name"), rs.getBoolean("status"), rs.getString("description")));
+                tasks.add(new Task(rs.getLong("id"), rs.getString("name"), rs.getBoolean("status"), rs.getString("description")));
 
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Failed to list all tasks", e);
+            throw new RuntimeException("Failed to get all tasks!", e);
         }
         return tasks;
     }
@@ -65,7 +67,7 @@ public class JdbcTaskDAO implements DAO<Task, Long> {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Failed to delete the task", e);
+            throw new RuntimeException("No task with given id is found!", e);
         }
     }
 
@@ -117,7 +119,7 @@ public class JdbcTaskDAO implements DAO<Task, Long> {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException("Failed to save a task", e);
+            throw new RuntimeException("Failed to update the task", e);
         }
 
     }

@@ -1,9 +1,9 @@
 package com.simpleproject.demo.dao;
 
-import com.simpleproject.demo.model.Task;
 
 import java.util.List;
 
+//general dao
 public interface DAO<T, ID> {
     void save(T entity);
 

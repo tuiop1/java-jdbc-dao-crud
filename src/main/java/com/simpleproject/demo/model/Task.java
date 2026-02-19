@@ -1,22 +1,24 @@
 package com.simpleproject.demo.model;
 
+//model of task
 public class Task {
-    private long id;
-    private String name;
-    private boolean isCompleted;
-    private String description;
+    private final Long id;
+    private final String name;
+    private final boolean isCompleted;
+    private final String description;
 
 
-    public Task(long id, String name, boolean isCompleted, String description) {
+    public Task(Long id, String name, boolean isCompleted, String description) throws IllegalArgumentException {
         this.id = id;
         this.name = name;
         this.isCompleted = isCompleted;
         this.description = description;
+
+        if(name == null || name.length() < 3 ) throw new IllegalArgumentException("Failed to create Task(name is not correct)");
+
     }
 
-    public long getId() {
-        return id;
-    }
+
 
     public String getName() {
         return name;
@@ -28,5 +30,10 @@ public class Task {
 
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String toString(){
+       return String.format("%d | %s%s\n(description.): %s",id,name,isCompleted ? " (completed) " :" (not completed) ",description);
     }
 }
